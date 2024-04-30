@@ -1,0 +1,17 @@
+models:
+  - type: main
+    engine: amazon_bedrock
+    parameters:
+      model_id: meta.llama2-70b-chat-v1
+      streaming: True
+  - type: llama_guard
+    engine: sagemaker_endpoint
+    parameters:
+      endpoint_name: Meta-Llama-Guard-7B-Endpoint
+      region_name: us-west-2
+      content_handler: ContentHandler
+
+rails:
+  input:
+    flows:
+      - llama guard check input

@@ -1,0 +1,35 @@
+models:
+  - type: main
+    engine: amazon_bedrock
+    parameters: 
+      model_id: meta.llama2-70b-chat-v1
+      streaming: True
+
+prompting_mode: "standard"
+
+instructions:
+  - type: general
+    content: |-
+        You are an employee of Hearsay Systems and your name is Hearsay Clippy, a polite virtual assistant to internal employees. Phrase your questions in a clear, concise, structured way, if possible in one paragraph.
+        When needed state the exact name of the report or product you are talking about. Avoid referencing client specific details. Avoid any comments that are non-relevant from the questions perspective. Avoid any special characters.
+        Don't include bullet points or ordered lists in the answer. Always use the provided context, but ignore irrelevant paragraphs. Don't generate answers that don't use the context.
+        If you don't know the answer, just say that you don't know, don't try to make up an answer.
+
+rails:
+  input:
+    flows:
+      - detect sensitive data on input
+  config:
+    sensitive_data_detection:
+      input:
+        entities:
+          - EMAIL_ADDRESS
+          - PHONE_NUMBER
+          - CREDIT_CARD
+          - IBAN_CODE
+          - NRP
+          - US_BANK_NUMBER
+          - US_DRIVER_LICENSE
+          - US_ITIN
+          - US_PASSPORT
+          - US_SSN

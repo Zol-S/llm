@@ -1,0 +1,6 @@
+models:
+  - type: main
+    engine: amazon_bedrock
+    parameters: 
+      model_id: meta.llama2-70b-chat-v1
+      streaming: True
